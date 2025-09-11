@@ -14,17 +14,21 @@ public class Player
 
     public void playTurn()
     {
-        //do stuff
+        // bet
+        // ask to hit or stay
     }
 
     public void hit()
     {
-        //do stuff
+        // Card newCard = gethand();
+        // this.hand.add(getHand)
     }
 
     public int getHandValue()
     {
-        //do stuff
+        //add values together (aces are 11 or 1)
+        // int totalVal = 0;
+        
         return 1;
     }
 
