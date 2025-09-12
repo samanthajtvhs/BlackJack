@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player
 {
@@ -15,13 +16,27 @@ public class Player
     public void playTurn()
     {
         // bet
+
+
         // ask to hit or stay
+        Scanner play = new Scanner(System.in);
+        System.out.print("Do you want to hit or stay? 1 for hit, 2 for stay");
+        int hitOrStay = play.nextInt();
+
+        if (hitOrStay == 1)
+        {
+            this.hit(deck);
+        }
+        else if (hitOrStay == 2)
+        {
+            return;
+        }
     }
 
     public void hit()
     {
-        // Card newCard = gethand();
-        // this.hand.add(getHand)
+        Card newCard = deck.getTopCard();
+        this.hand.add(newCard);
     }
 
     public int getHandValue()
