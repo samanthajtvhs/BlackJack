@@ -26,6 +26,11 @@ public class Run {
             player.hit(deck);
         }
 
+        for (int i = 0; i <= playerList.size(); i++)
+        {
+           Player currentPlayer = playerList.get(i);
+           
+        }
 
         
 
