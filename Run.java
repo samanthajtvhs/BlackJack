@@ -12,6 +12,7 @@ public class Run {
 
 
         ArrayList<Player> playerList = new ArrayList<>();
+        boolean gameOn = true;
         
         for (int i = 0; i < numOfPlayers; i++)
         {
@@ -21,15 +22,23 @@ public class Run {
 
             Player player = new Player(playerName);
             playerList.add(player);
+        }
 
-            player.hit(deck);
-            player.hit(deck);
+        while (gameOn = true)
+        {
+            for (Player player : playerList)
+            {
+                player.setBet();
+                player.hit(deck);
+                player.hit(deck);
+            }
         }
 
         for (int i = 0; i <= playerList.size(); i++)
         {
            Player currentPlayer = playerList.get(i);
-           
+           currentPlayer.playTurn(deck);
+          // handleValue(getDealerHandValue());
         }
 
         
