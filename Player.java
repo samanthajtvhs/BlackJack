@@ -31,7 +31,6 @@ public class Player
         {
             return;
         }
-
     }
 
     public void hit(Deck deck)
@@ -54,12 +53,19 @@ public class Player
                 aces++;
             }
         }
-        while ()
+        while (aces > 0)
         {
-
+            if (total > 21)
+            {
+                total = total - 10;
+                aces--;
+            }
+            else 
+            {
+                aces = 0;
+            }
         }
-        
-        return 1;
+        return total;
     }
 
     public void getCard(Deck deck)
@@ -84,17 +90,16 @@ public class Player
             else 
             {
                 System.out.print("You can't bet more than you have.");
-                System.out.print("Hit enter to continue");
-                
+                System.out.print("Hit enter to continue"); 
             }
         }      
     }
 
-    public double handleBet(int dealerHandValue)
+    public void handleBet(int dealerHandValue)
     {
         if (getHandValue() > 21)
            {
-                System.out.println("You lost.");
+                System.out.println("You lost");
                 //minus bet
            }
            else if (getHandValue() == dealerHandValue)
@@ -109,7 +114,7 @@ public class Player
            }
            else if (getHandValue() < dealerHandValue)
            {
-                System.out.print("You lose.");
+                System.out.print("You lost");
                 this.money = this.money - bet;
            }
            else 

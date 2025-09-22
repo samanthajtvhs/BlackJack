@@ -9,19 +9,49 @@ public class Dealer extends Player
 
     }
 
-    public int getDealerHandValue();
+    public int getDealerHandValue()
     {
-        //copy from hand value
+        int total = 0;
+        int aces = 0;
+        for (Card card : dealerHand)
+        {
+            int cardVal = card.getCardValue();
+            total = total + cardVal;
+            if (cardVal == 11)
+            {
+                aces++;
+            }
+        }
+        while (aces > 0)
+        {
+            if (total > 21)
+            {
+                total = total - 10;
+                aces--;
+            }
+            else 
+            {
+                aces = 0;
+            }
+        }
+        return total;
     }
 
-    public void DealerHit(Deck deck)
+    public void dealerHit(Deck deck)
     {
         Card newCard = deck.getTopCard();
         this.dealerHand.add(newCard);
-        for (int i = 1; i <= dealerHand.size(); i++)
+
+        if (dealerHand.size() ==  1)
         {
-            System.out.println(newCard);
+
+        }
+        else
+        {
+            for (int i = 1; i <= dealerHand.size(); i++)
+            {
+                System.out.println(newCard);
+            }
         }
     }
-
 }
