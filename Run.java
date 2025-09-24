@@ -16,7 +16,7 @@ public class Run {
         for (int i = 0; i < numOfPlayers; i++)
         {
             Scanner nameScanner = new Scanner(System.in);
-            System.out.print("What is player " + i + "'s name?");
+            System.out.print("What is player " + (i+1) + "'s name? ");
             String playerName = nameScanner.nextLine();
 
             Player player = new Player(playerName);
@@ -27,28 +27,47 @@ public class Run {
         // game on
         while (gameOn = true)
         {
-            dealer.dealerHit(deck);
-            dealer.dealerHit(deck);
-
+            System.out.println("Dealer's Hand:");
+            dealer.firstDealerHit(deck);
+            dealer.secondDealerHit(deck);
+            //start
             for (Player player : playerList)
             {
+                
                 player.setBet();
+            }
+            //player hit
+            for (Player player : playerList)
+            {
+                System.out.println(player.getName() + "'s hand:");
                 player.hit(deck);
                 player.hit(deck);
             }
-
-
+            //player turn
              for (Player player : playerList)
             {
                 player.playTurn(deck);
-                player.handleBet(dealer.getDealerHandValue());
             }
-            gameOn = false;
+            //dealer turn
+            dealer.dealerTurn(deck);
+            // bets outcome
+            for (Player player : playerList)
+            {
+                player.handleBet(dealer.getDealerHandValue());
+                if (player.getMoney() == 0)
+                {
+                    gameOn = false;
+                }
+            }
+            Scanner gameScanner = new Scanner(System.in);
+            System.out.print("Do want to keep playing? type yes or no");
+            String keepPlaying = gameScanner.nextLine();
+            keepPlaying.toLowerCase();
+
+            if (keepPlaying.equals("no"))
+            {
+                gameOn = false;
+            }
         }
-        
-        // for(Card card : deck.getCards())
-        // {
-        //     System.out.println(card);
-        // }
     }
 }

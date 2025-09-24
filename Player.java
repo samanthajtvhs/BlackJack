@@ -17,20 +17,25 @@ public class Player
 
     public void playTurn(Deck deck)
     {
-        // ask to hit or stay
-        Scanner play = new Scanner(System.in);
-        System.out.print("Do you want to hit or stay? 1 for hit, 2 for stay");
-        int hitOrStay = play.nextInt();
+        boolean going = true;
+        while (going == true)
+        {
+            // ask to hit or stay
+            Scanner play = new Scanner(System.in);
+            System.out.print("Does " + this.name + " want to hit or stay? h for hit, s for stay: ");
+            String hitOrStay = play.nextLine();
+            hitOrStay.toLowerCase();
+            if (hitOrStay.equals("h"))
+            {
+                this.hit(deck);
+            }
+            else if (hitOrStay.equals("s"))
+            {
+                going = false;
+            }
 
-        // while (Player.playTurn )
-        if (hitOrStay == 1)
-        {
-            this.hit(deck);
         }
-        else if (hitOrStay == 2)
-        {
-            return;
-        }
+        
     }
 
     public void hit(Deck deck)
@@ -68,19 +73,14 @@ public class Player
         return total;
     }
 
-    public void getCard(Deck deck)
-    {
-        //do stuff
-    }
-
     public void setBet()
     {
         boolean validBet = false;
-        while (validBet = false)
+        while (validBet == false)
         {
             Scanner betScanner = new Scanner(System.in);
+            System.out.print("What is " + this.name+"'s bet? You have "+ this.money + " dollars. Enter: ");
             double bet = betScanner.nextDouble();
-            System.out.print("What is your bet? You have "+ money + " dollars.");
             betScanner.nextLine();
             if (bet <= this.money)
             {
@@ -122,5 +122,16 @@ public class Player
                 System.out.print("You win!");
                 this.money = this.money + bet;
            }
+           System.out.print("You now have " + this.money + " dollars");
+    }
+
+    public double getMoney()
+    {
+        return this.money;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 }

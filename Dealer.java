@@ -37,21 +37,59 @@ public class Dealer extends Player
         return total;
     }
 
+    public boolean isSoft()
+    {
+        int total = 0;
+        int aces = 0;
+        for (Card card : dealerHand)
+        {
+            int cardVal = card.getCardValue();
+            total = total + cardVal;
+            if (cardVal == 11)
+            {
+                aces++;
+            }
+        }
+        while (aces > 0)
+        {
+            if (total > 21)
+            {
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void firstDealerHit(Deck deck)
+    {
+        Card newCard = deck.getTopCard();
+        this.dealerHand.add(newCard);
+    }
+
+
+    public void secondDealerHit(Deck deck)
+    {
+        Card newCard = deck.getTopCard();
+        this.dealerHand.add(newCard);
+        System.out.println(newCard);
+    }
+
     public void dealerHit(Deck deck)
     {
         Card newCard = deck.getTopCard();
         this.dealerHand.add(newCard);
+        System.out.println(dealerHand);
+    }
 
-        if (dealerHand.size() ==  1)
+    public void dealerTurn(Deck deck)
+    {
+        while (getDealerHandValue() < 17|| getDealerHandValue() == 17 && isSoft() == true)
         {
-
-        }
-        else
-        {
-            for (int i = 1; i <= dealerHand.size(); i++)
-            {
-                System.out.println(newCard);
-            }
+            dealerHit(deck);
         }
     }
 }
