@@ -17,12 +17,16 @@ public class Player
 
     public void playTurn(Deck deck)
     {
-        boolean going = true;
-        while (going == true)
+        System.out.println(" ");
+        System.out.println(this.name + "'s turn:");
+        while (getHandValue() <= 21)
         {
             // ask to hit or stay
             Scanner play = new Scanner(System.in);
-            System.out.print("Does " + this.name + " want to hit or stay? h for hit, s for stay: ");
+            System.out.println(" ");
+            System.out.println("Your cards are "+ hand);
+            System.out.println("Your cards are equal to: "+ getHandValue());
+            System.out.print("Do you want to hit or stay? h for hit, s for stay: ");
             String hitOrStay = play.nextLine();
             hitOrStay.toLowerCase();
             if (hitOrStay.equals("h"))
@@ -31,10 +35,12 @@ public class Player
             }
             else if (hitOrStay.equals("s"))
             {
-                going = false;
+                break;
             }
 
         }
+        System.out.println("Your cards are equal to: " + getHandValue());
+        System.out.println(" ");
         
     }
 
@@ -99,30 +105,30 @@ public class Player
     {
         if (getHandValue() > 21)
            {
-                System.out.println("You lost");
-                //minus bet
+                System.out.print(this.name +" lost. ");
+                this.money = this.money - bet;
            }
            else if (getHandValue() == dealerHandValue)
            {
-                System.out.print("You tied with the dealer, you don't win or lose money");
+                System.out.print(this.name + " tied with the dealer, you don't win or lose money. ");
            }
            else if (getHandValue() == 21)
            {
-                System.out.print("You win");
+                System.out.print(this.name + "won! ");
                 this.bet = this.bet * 1.5;
                 this.money = bet + money;
            }
            else if (getHandValue() < dealerHandValue)
            {
-                System.out.print("You lost");
+                System.out.print(this.name + " lost. ");
                 this.money = this.money - bet;
            }
            else 
            {
-                System.out.print("You win!");
+                System.out.print(this.name + " won! ");
                 this.money = this.money + bet;
            }
-           System.out.print("You now have " + this.money + " dollars");
+           System.out.println(this.name + " now has " + this.money + " dollars");
     }
 
     public double getMoney()

@@ -89,6 +89,7 @@ public class Dealer extends Player
     {
         while (getDealerHandValue() < 17|| getDealerHandValue() == 17 && isSoft() == true)
         {
+            System.out.println("Dealers hand: ");
             dealerHit(deck);
         }
     }
