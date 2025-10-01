@@ -10,16 +10,16 @@ public class Run {
         boolean gameOn = true;
         
         //creating and assigning players
-        Scanner newScanner = new Scanner(System.in);
-        System.out.print("How many players are there? ");
-        int numOfPlayers = newScanner.nextInt();
+        
             //checking number of players
-        // boolean check = true;
-        // while (check == true)
-        // {
-        //     if (numOfPlayers <= 4)
-            
-        //     {
+        boolean validNumOfPlayers = false;
+        while (validNumOfPlayers == false)
+        {
+            Scanner newScanner = new Scanner(System.in);
+            System.out.print("How many players are there? ");
+            int numOfPlayers = newScanner.nextInt();
+            if (numOfPlayers <= 4)
+            {
                 for (int i = 0; i < numOfPlayers; i++)
                 {
                     Scanner nameScanner = new Scanner(System.in);
@@ -29,15 +29,14 @@ public class Run {
                     Player player = new Player(playerName);
                     playerList.add(player);
                 }
+                validNumOfPlayers = true;
                 System.out.println(" ");
-        //         check = false;
-        //     }
-        //     else
-        //     {
-        //         System.out.println("You can't have more than 4 players. Hit enter to continue: ");
-        //     }
-        // }
-        
+            }
+            else 
+            {
+                System.out.println("You can't have more than 4 players.");
+            }
+        }
         
         
 

@@ -95,8 +95,7 @@ public class Player
             }
             else 
             {
-                System.out.print("You can't bet more than you have.");
-                System.out.print("Hit enter to continue"); 
+                System.out.println("You can't bet more than you have.");
             }
         }      
     }
@@ -139,5 +138,13 @@ public class Player
     public String getName()
     {
         return this.name;
+    }
+// reset cards for next rounds
+    public void DealCards(Deck deck)
+    {
+        this.hand = new ArrayList<>();
+        hit(deck);
+        hit(deck);
+
     }
 }
