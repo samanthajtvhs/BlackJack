@@ -41,11 +41,11 @@ public class Run {
         
 
         // game on
-        while (gameOn = true)
+        while (gameOn == true)
         {
+            System.out.println(" ");
             System.out.print("Dealer is showing: ");
-            dealer.firstDealerHit(deck);
-            dealer.secondDealerHit(deck);
+            dealer.dealNewCards(deck);
             System.out.println(" ");
             //start
             for (Player player : playerList)
@@ -58,8 +58,7 @@ public class Run {
             for (Player player : playerList)
             {
                 System.out.println(player.getName() + "'s hand:");
-                player.hit(deck);
-                player.hit(deck);
+                player.dealNewCards(deck);
                 System.out.println(" ");
             }
             //player turn
@@ -69,23 +68,29 @@ public class Run {
             }
             //dealer turn
             dealer.dealerTurn(deck);
+            dealer.getDealerHandValue();
             // bets outcome
             for (Player player : playerList)
             {
                 player.handleBet(dealer.getDealerHandValue());
-                if (player.getMoney() == 0)
+            }
+            // remove players with no money
+            for (Player player : playerList)
+            {
+                if (player.getMoney() == 0.0)
                 {
-                    gameOn = false;
+                    playerList.remove(player);
+                    System.out.println(player.getName() + " was removed because they don't have any money :(");
                 }
             }
             Scanner gameScanner = new Scanner(System.in);
-            System.out.print("Do want to keep playing? type yes or no: ");
+            System.out.print("Do want to keep playing? type y or n ");
             String keepPlaying = gameScanner.nextLine();
             keepPlaying.toLowerCase();
             // CLEAR FUNCTION TO KEEP PLAYING
-            if (keepPlaying.equals("no"))
+            if (keepPlaying.equals("n"))
             {
-                gameOn = false;
+                break;
             }
         }
     }

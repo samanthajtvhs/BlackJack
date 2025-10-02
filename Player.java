@@ -140,11 +140,10 @@ public class Player
         return this.name;
     }
 // reset cards for next rounds
-    public void DealCards(Deck deck)
+    public void dealNewCards(Deck deck)
     {
         this.hand = new ArrayList<>();
         hit(deck);
         hit(deck);
-
     }
 }

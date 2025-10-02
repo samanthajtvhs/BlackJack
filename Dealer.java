@@ -64,18 +64,15 @@ public class Dealer extends Player
         return false;
     }
 
-    public void firstDealerHit(Deck deck)
+    public void dealNewCards(Deck deck)
     {
+        this.dealerHand = new ArrayList<>();
         Card newCard = deck.getTopCard();
         this.dealerHand.add(newCard);
-    }
+        Card shownCard = deck.getTopCard();
+        this.dealerHand.add(shownCard);
+        System.out.println(shownCard);
 
-
-    public void secondDealerHit(Deck deck)
-    {
-        Card newCard = deck.getTopCard();
-        this.dealerHand.add(newCard);
-        System.out.println(newCard);
     }
 
     public void dealerHit(Deck deck)
