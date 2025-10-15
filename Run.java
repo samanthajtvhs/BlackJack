@@ -9,12 +9,11 @@ public class Run {
         ArrayList<Player> playerList = new ArrayList<>();
         boolean gameOn = true;
         
-        //creating and assigning players
-        
             //checking number of players
         boolean validNumOfPlayers = false;
         while (validNumOfPlayers == false)
         {
+            //creating and assigning players
             Scanner newScanner = new Scanner(System.in);
             System.out.print("How many players are there? ");
             int numOfPlayers = newScanner.nextInt();
@@ -75,19 +74,23 @@ public class Run {
                 player.handleBet(dealer.getDealerHandValue());
             }
             // remove players with no money
-            for (Player player : playerList)
+            for (int i = playerList.size()-1; i >= 0; i--)
             {
+                Player player = playerList.get(i);
                 if (player.getMoney() == 0.0)
                 {
-                    playerList.remove(player);
+                    playerList.remove(i);
                     System.out.println(player.getName() + " was removed because they don't have any money :(");
                 }
+            }
+            if (playerList.size() == 0)
+            {
+                break;
             }
             Scanner gameScanner = new Scanner(System.in);
             System.out.print("Do want to keep playing? type y or n ");
             String keepPlaying = gameScanner.nextLine();
             keepPlaying.toLowerCase();
-            // CLEAR FUNCTION TO KEEP PLAYING
             if (keepPlaying.equals("n"))
             {
                 break;
